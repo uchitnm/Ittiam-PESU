@@ -1,0 +1,73 @@
+"Analyze the match video  and identify all major events suitable for a highlight. For each event, provide:
+Start timestamp: The moment the event build-up begins (including at least 3 consecutive passes leading to the event).
+End timestamp: The moment the event is fully completed or resolved (e.g., goal scored, foul concluded, save completed).
+Event type: Goal, foul, shot on target, substitution, yellow/red card, penalty, or any other major match event.
+Context/description: A concise narrative summarising the sequence, players involved, and significance of the event.
+The output should be structured in chronological order, capturing the complete flow of each major event with accurate start and end times suitable for creating a highlight reel."
+
+
+
+Follow up (L0 - Clip 3) Output :
+
+
+Of course. Here is a detailed analysis of the major events from the video, structured for creating a highlight reel.
+
+Event 1: Spain's Volley Chance Blocked
+
+Start Timestamp: 00:07
+
+End Timestamp: 00:20
+
+Event Type: Shot on Target (Blocked)
+
+Context/Description: Spain initiates a fluid attacking move from their own half. The ball is worked out to the left wing, leading to a well-placed cross into the penalty area. A Spanish attacker meets the ball with a powerful first-time volley, but a Portuguese defender makes a crucial, last-ditch block to prevent a certain goal.
+
+Event 2: Foul and Yellow Card for Sergio Busquets
+
+Start Timestamp: 01:08
+
+End Timestamp: 01:34
+
+Event Type: Foul, Yellow Card
+
+Context/Description: Portugal breaks forward on a promising counter-attack. After a quick one-two pass bypasses a defender, the Portuguese attacker is cynically tripped from behind by Spain's Sergio Busquets to halt the dangerous move. The referee immediately awards a free kick and shows Busquets a yellow card for the foul.
+
+Event 3: Cristiano Ronaldo's Free Kick Blocked by the Wall
+
+Start Timestamp: 01:56
+
+End Timestamp: 02:37
+
+Event Type: Shot on Target (Blocked Free Kick)
+
+Context/Description: Following the foul by Busquets, Cristiano Ronaldo steps up to take the free kick from a prime goal-scoring position. He strikes the ball with power, but it smashes directly into the Spanish defensive wall and deflects away for a corner, leaving Ronaldo visibly frustrated.
+
+Event 4: Goal for Spain by Diego Costa
+
+Start Timestamp: 07:05
+
+End Timestamp: 07:45
+
+Event Type: Goal
+
+Context/Description: A long, direct pass is launched from deep in Spain's half towards striker Diego Costa. He engages in a physical aerial battle with Portuguese defender Pepe, who goes to ground. Costa brings the ball down, drives into the penalty box, skillfully evades another defender with a sharp cut, and fires a precise, low shot into the bottom corner to level the score at 1-1.
+
+Event 5: VAR Review Confirms Spain's Goal
+
+Start Timestamp: 07:39
+
+End Timestamp: 08:41
+
+Event Type: VAR Review
+
+Context/Description: Immediately following Diego Costa's goal, the referee signals for a VAR review to check the legality of the initial challenge on Pepe. Replays show the contact between the two players. After a tense wait and consultation with the VAR officials, the referee confirms that no foul was committed and allows the goal to stand.
+
+Event 6: Isco's Volley Smashes the Crossbar
+
+Start Timestamp: 09:35
+
+End Timestamp: 09:58
+
+Event Type: Shot (Off Crossbar)
+
+Context/Description: Spain builds a patient attack, circulating the ball outside the Portuguese penalty area. The ball is laid off to Isco, who unleashes a phenomenal, dipping volley from 20 yards out. The shot beats the goalkeeper but cannons off the underside of the crossbar, bounces directly down onto the goal line, and spins back into play. The referee correctly rules it no goal.
