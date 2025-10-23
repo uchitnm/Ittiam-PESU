@@ -1,6 +1,6 @@
 Soccer-AI — Training and results for object detection & pose/keypoint models
 
-Project overview
+Overview
 
 This workspace contains notebooks and trained weights used to train object detectors (players, ball) for soccer/football video/image data. The repository stores training notebooks, pre-trained YOLO models, and a Results/ folder with experiment outputs and best/last weights.
 
