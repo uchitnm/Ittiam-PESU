@@ -1,0 +1,16 @@
+# .gitignore
+
+# Ignore environment variables file
+# .env
+
+# Ignore large media uploads
+uploads/
+
+# Ignore Python virtual environment folder
+venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# Ignore Streamlit config
+# .streamlit/

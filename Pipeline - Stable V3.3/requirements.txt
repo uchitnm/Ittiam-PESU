@@ -1,0 +1,8 @@
+streamlit
+ffmpeg-python
+google-generativeai
+beautifulsoup4
+markdown
+openai-whisper
+python-dotenv
+pandas
