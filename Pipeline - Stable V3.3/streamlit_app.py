@@ -8,6 +8,7 @@ import threading
 from glob import glob
 import pandas as pd
 import datetime
+import shutil
 
 import pipeline
 import utils
@@ -28,6 +29,11 @@ if "custom_video_path" not in st.session_state: st.session_state.custom_video_pa
 # --- Constants & Backend Helpers ---
 UPLOAD_FOLDER = "uploads"
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+
+FINAL_HIGHLIGHT_FOLDER = "Highlight_outputs"
+os.makedirs(FINAL_HIGHLIGHT_FOLDER, exist_ok=True)
+
+
 
 def get_task_dir(task_id): return os.path.join(UPLOAD_FOLDER, task_id)
 def get_status(task_id):
@@ -324,6 +330,59 @@ if st.session_state.view == 'generator':
                 else:
                     time_str = f"{int(completion_time)} sec"
                 st.success(f"Pipeline completed in {time_str}.")
+
+            # --- Export final highlights to FINAL_HIGHLIGHT_FOLDER ---
+            try:
+                export_marker = os.path.join(task_dir, 'exported_to.txt')
+                if not os.path.exists(export_marker):
+                    # get the final summary filename if present
+                    summary_filename = status.get('final_summary_filename')
+                    # Determine a match label from statistics if possible
+                    match_label = task_id
+                    try:
+                        if os.path.exists(stats_file):
+                            with open(stats_file, 'r') as sf: stats_obj = json.load(sf)
+                            ta = stats_obj.get('team_stats', {}).get('team_A', {}).get('team_name')
+                            tb = stats_obj.get('team_stats', {}).get('team_B', {}).get('team_name')
+                            if ta and tb:
+                                def _clean(n):
+                                    return ''.join(c for c in n if c.isalnum() or c in (' ', '_')).strip().replace(' ', '_')
+                                match_label = f"{_clean(ta)}_vs_{_clean(tb)}"
+                    except Exception:
+                        match_label = task_id
+
+                    timestamp = datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
+                    final_subdir = f"{match_label}_{timestamp}"
+                    final_dir = os.path.join(FINAL_HIGHLIGHT_FOLDER, final_subdir)
+                    os.makedirs(final_dir, exist_ok=True)
+
+                    # Collect summary videos and any generated clips
+                    files_to_copy = []
+                    if summary_filename:
+                        sfpath = os.path.join(task_dir, summary_filename)
+                        if os.path.exists(sfpath): files_to_copy.append(sfpath)
+                    # category summaries
+                    files_to_copy += glob(os.path.join(task_dir, "summary_*.mp4"))
+                    files_to_copy += glob(os.path.join(task_dir, "summary_custom*.mp4"))
+                    # individual clips in subfolders
+                    files_to_copy += glob(os.path.join(task_dir, "clips", "**", "*.mp4"), recursive=True)
+
+                    files_to_copy = sorted({p for p in files_to_copy if os.path.exists(p)})
+                    for src in files_to_copy:
+                        try:
+                            shutil.copy2(src, os.path.join(final_dir, os.path.basename(src)))
+                        except Exception as e:
+                            # Non-fatal: show a warning in the UI
+                            st.warning(f"Failed to copy {os.path.basename(src)}: {e}")
+
+                    # Write marker so we don't copy again on reruns
+                    try:
+                        with open(export_marker, 'w') as m: m.write(final_dir)
+                    except Exception:
+                        pass
+                    st.info(f"Saved highlight videos to: {final_dir}")
+            except Exception as e:
+                st.warning(f"Error while exporting highlights: {e}")
             
             col1, col2 = st.columns([2, 1], gap="large")
 
