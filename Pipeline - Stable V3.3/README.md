@@ -159,6 +159,7 @@ Your web browser should automatically open to the application's URL (usually `ht
     -   Expandable sections for category-based highlights (e.g., all goals).
     -   A button to navigate to the statistical dashboard.
     -   Download buttons for all generated videos.
+    - All clips and summaries are exported into a timestamped folder inside `Highlight_outputs/`.
 6.  **Create Custom Reels:** Use the "Create Custom Highlight" tool on the right to select specific events and stitch them into a new video.
 
 ---
@@ -166,16 +167,22 @@ Your web browser should automatically open to the application's URL (usually `ht
 ## Project File Structure
 
 ```
-.
-├── uploads/              # Directory for storing processed videos and artifacts
-├── data/                 # You must create this for the case study transcript
-│   └── case_study_transcript.txt
-├── .env                  # You must create this for your API key
-├── pipeline.py           # Core logic for video processing, transcription, and AI analysis
-├── streamlit_app.py      # The Streamlit web application front-end
-├── utils.py              # Helper functions (e.g., file hashing)
-├── requirements.txt      # Python package dependencies
-└── README.md             # This file
+uploads/<task_id>/
+  ├── <uploaded_video>.mp4
+  ├── audio.wav
+  ├── transcript.txt
+  ├── events.json
+  ├── statistics.json
+  ├── clips/
+  │    ├── prologue/clip_1_prologue.mp4
+  │    ├── prologue/clip_1_prologue.jpg
+  │    └── goal/clip_3_goal.mp4
+  ├── summary_chronological.mp4
+  ├── summary_goal.mp4
+  ├── summary_custom_*.mp4
+  └── status.json
+
+Highlight_outputs/<match_label>_<timestamp>/  # exported copies for easy sharing
 ```
 
 ---
